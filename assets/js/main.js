@@ -7,7 +7,9 @@ $(document)
 
 	var dataObj = {
 		email: $("input[type='email']", _form).val(),
-		password: $("input[type='password']", _form).val()
+		password: $("input[type='password']", _form).val(),
+		firstname: $("input[name='firstname']",_form).val(),
+		lastname: $("input[name='lastname']",_form).val()
 	};
 
 	if(dataObj.email.length < 6) {
@@ -43,7 +45,7 @@ $(document)
 		}
 	})
 	.fail(function ajaxFailed(e) {
-		// This failed 
+		console.log(e);
 	})
 	.always(function ajaxAlwaysDoThis(data) {
 		// Always do
@@ -96,7 +98,7 @@ $(document)
 		}
 	})
 	.fail(function ajaxFailed(e) {
-		// This failed 
+		console.log(e)
 	})
 	.always(function ajaxAlwaysDoThis(data) {
 		// Always do

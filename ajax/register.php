@@ -25,10 +25,14 @@
 			// User does not exist, add them now. 
 
 			$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+			$firstname = $_POST['firstname'];
+			$lastname = $_POST['lastname'];
 			
-			$addUser = $con->prepare("INSERT INTO users(email, password) VALUES(LOWER(:email), :password)");
+			$addUser = $con->prepare("INSERT INTO users(email, password,firstname,lastname) VALUES(LOWER(:email), :password,LOWER(:firstname),LOWER(:lastname))");
 			$addUser->bindParam(':email', $email, PDO::PARAM_STR);
 			$addUser->bindParam(':password', $password, PDO::PARAM_STR);
+			$addUser->bindParam(':firstname', $firstname, PDO::PARAM_STR);
+			$addUser->bindParam(':lastname' , $lastname, PDO::PARAM_STR);
 			$addUser->execute();
 
 			$user_id = $con->lastInsertId();
